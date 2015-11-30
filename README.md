@@ -1,2 +1,2 @@
 # Broccoli
-console rss reader for <a href="theverge.com">theverge.com</a>
+console rss reader for <a href="http://www.theverge.com">theverge.com</a>
