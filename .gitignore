@@ -49,7 +49,14 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+#umlet
+*.uxf
 
+#images
+*.png
+*.gif
+*.jpeg
+*.jpg
 
 
 
