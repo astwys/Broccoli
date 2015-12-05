@@ -8,7 +8,33 @@ namespace Broccoli {
 
 	class Model {
 
-		public v MyProperty { get; set; }
+		public View View { get; set; }
+		public Controller Controller { get; set; }
+		public Downloader Downloader { get; set; }
+		public Storage Storage { get; set; }
+
+		public Model () {
+			View = new View(this);
+			Controller = new Controller(this);
+			Downloader = new Downloader(this);
+			Storage = new Storage();
+		}
+
+		public void ShowArticles () {
+
+		}
+
+		public void ShowSavedArticles () {
+
+		}
+
+		public void ShowHelp () {
+
+		}
+
+		public void Save () {
+
+		}
 
 	}
 }

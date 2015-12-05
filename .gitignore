@@ -79,6 +79,7 @@ $RECYCLE.BIN/
 *.user
 *.userosscache
 *.sln.docstates
+Broccoli/.vs/Broccoli/v14/.suo
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
