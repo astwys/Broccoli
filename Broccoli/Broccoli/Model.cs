@@ -14,8 +14,8 @@ namespace Broccoli {
 		public Storage Storage { get; set; }
 
 		public Model () {
-			View = new View();
-			Controller = new Controller();
+			View = new View(this);
+			Controller = new Controller(this);
 			Downloader = new Downloader(this);
 			Storage = new Storage();
 		}
