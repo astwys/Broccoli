@@ -18,8 +18,10 @@ namespace Broccoli {
 			Controller = new Controller(this);
 			Downloader = new Downloader(this);
 			Storage = new Storage();
+			Controller.Read();
 		}
 
+		#region show methods
 		public void ShowArticles () {
 
 		}
@@ -31,10 +33,27 @@ namespace Broccoli {
 		public void ShowHelp () {
 
 		}
+		#endregion
 
-		public void Save () {
+		#region read methods
+		public void ReadStorage (int articleNumber) {
 
 		}
+
+		public void ReadNew (int articleNumber) {
+
+		}
+		#endregion
+
+		#region storage management
+		public void Save (int articleNumber) {
+
+		}
+
+		public void Delete (int articleNumber) {
+
+		}
+		#endregion
 
 	}
 }
