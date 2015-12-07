@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Broccoli
-{
-    class Controller
-    {
+namespace Broccoli {
+	class Controller {
 
 		public Model Model { get; set; }
 
@@ -16,21 +14,40 @@ namespace Broccoli
 		}
 
 		public void Read () {
-			Console.Write("\n>");
+			Console.Write(">");
 			processInput(Console.ReadLine());
+			Read();
 		}
 
 		private void processInput (string input) {
-			switch (input) {
-
-				case "whats up":
+			if (input.Contains("save") && !input.Contains("show"))
+				save(input);
+			else if (input.Contains("read"))
+				readStorageOrNew(input);
+			else if (input.Contains("delete"))
+				delete(input);
+			else
+				switch (input) {
+					case "whats up":
 					whatsUp();
-				break;
+					break;
 
-				default:
+					case "exit":
+					exit();
+					break;
+
+					case "show saved":
+					showSaved();
+					break;
+
+					case "help":
+					help();
+					break;
+
+					default:
 					unkown();
-				break;
-			}
+					break;
+				}
 		}
 
 		//exit the program
@@ -67,8 +84,6 @@ namespace Broccoli
 				readNew(input);
 			else
 				error("The command is incomplete!");
-			//return to Read method to read the user's entry
-			Read();
 		}
 
 		private void readStorage (string input) {
@@ -85,8 +100,6 @@ namespace Broccoli
 			} catch (Exception) {
 				error("An unknown error occured!");
 			}
-			//return to Read method to read the user's entry
-			Read();
 		}
 
 		private void readNew (string input) {
@@ -103,8 +116,6 @@ namespace Broccoli
 			} catch (Exception) {
 				error("An unknown error occured!");
 			}
-			//return to Read method to read the user's entry
-			Read();
 		}
 
 		#endregion command
@@ -125,10 +136,8 @@ namespace Broccoli
 			} catch (Exception) {
 				error("An unknown error occured!");
 			}
-			//return to Read method to read the user's entry
-			Read();
 		}
-		
+
 		//delete an article (with the specific number)
 		private void delete (string input) {
 			try {
@@ -144,14 +153,12 @@ namespace Broccoli
 			} catch (Exception) {
 				error("An unknown error occured!");
 			}
-			//return to Read method to read the user's entry
-			Read();
 		}
 		#endregion
 
 		#region errors
 		private void unkown () {
-
+			Console.WriteLine("This command is unknown!");
 		}
 
 		private void error (string message) {
