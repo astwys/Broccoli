@@ -23,6 +23,10 @@ namespace Broccoli
           return doc;
       }
 
+      private List<Article> process() {
+          List<Article> articles = new List<Article>();
 
+          
+      }
   }
 }
