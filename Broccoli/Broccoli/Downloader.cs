@@ -24,9 +24,20 @@ namespace Broccoli
       }
 
       private List<Article> process() {
-          List<Article> articles = new List<Article>();
+            List<Article> articles = new List<Article>();
+            XDocument xd = update();
+            var res1 = from el in xd.Root.Elements()
+                       where el.Name.LocalName.Equals("entry")
+                       select new { title = el.Element("{http://www.w3.org/2005/Atom}title").Value, link = el.Element("{http://www.w3.org/2005/Atom}id").Value };
 
-          
-      }
-  }
+            int i = 1;
+            foreach (var el in res1)
+            {
+
+                articles.Add(new Article(i, el.title, el.link));
+                i++;
+            }
+            return articles;
+        }
+    }
 }
