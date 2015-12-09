@@ -23,35 +23,35 @@ namespace Broccoli {
 
 		#region show methods
 		public void ShowArticles () {
-
+			Console.WriteLine("Show articles");
 		}
 
 		public void ShowSavedArticles () {
-
+			Console.WriteLine("Show saved articles");
 		}
 
 		public void ShowHelp () {
-
+			Console.WriteLine("Show help articles");
 		}
 		#endregion
 
 		#region read methods
 		public void ReadStorage (int articleNumber) {
-
+			Console.WriteLine("Read out of storage #"+ articleNumber +"");
 		}
 
 		public void ReadNew (int articleNumber) {
-
+			Console.WriteLine("Read out of the new ones #"+ articleNumber +"");
 		}
 		#endregion
 
 		#region storage management
 		public void Save (int articleNumber) {
-
+			Console.WriteLine("Save article #"+ articleNumber);
 		}
 
 		public void Delete (int articleNumber) {
-
+			Console.WriteLine("Delete article");
 		}
 		#endregion
 
