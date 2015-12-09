@@ -1,7 +1,0 @@
-C:\Users\Maximilian\Dropbox\3EHIF\POS\Projects\Broccoli\Broccoli\Broccoli\bin\Debug\Broccoli.exe.config
-Y:\school\3EHIF\POS\Broccoli\Broccoli\Broccoli\bin\Debug\Broccoli.exe.config
-C:\Users\Maximilian\Dropbox\3EHIF\POS\Projects\Broccoli\Broccoli\Broccoli\bin\Debug\Broccoli.exe
-C:\Users\Maximilian\Dropbox\3EHIF\POS\Projects\Broccoli\Broccoli\Broccoli\bin\Debug\Broccoli.pdb
-C:\Users\Maximilian\Dropbox\3EHIF\POS\Projects\Broccoli\Broccoli\Broccoli\obj\Debug\Broccoli.csprojResolveAssemblyReference.cache
-C:\Users\Maximilian\Dropbox\3EHIF\POS\Projects\Broccoli\Broccoli\Broccoli\obj\Debug\Broccoli.exe
-C:\Users\Maximilian\Dropbox\3EHIF\POS\Projects\Broccoli\Broccoli\Broccoli\obj\Debug\Broccoli.pdb
