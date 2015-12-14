@@ -17,8 +17,8 @@ namespace Broccoli {
 			load();
 		}
 
-		public void Store () {
-			save(); //TODO pass Article
+		public void Store (Article article) {
+			save(article); //TODO pass Article
 			load();
 		}
 
@@ -26,7 +26,7 @@ namespace Broccoli {
 			return SavedArticles;
 		}
 
-		private void save () {
+		private void save (Article article) {
 
 		}
 
@@ -43,6 +43,7 @@ namespace Broccoli {
 			var articles =
 				from input in xmlin.Descendants("article")
 				select new { Id = input.Element("id").Value, Title = input.Element("title").Value, Link = input.Element("link").Value };
+
 
 		}
 
@@ -66,5 +67,3 @@ namespace Broccoli {
 	</articles>
 
 **/
-
-

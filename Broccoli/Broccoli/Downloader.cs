@@ -33,7 +33,6 @@ namespace Broccoli
             int i = 1;
             foreach (var el in res1)
             {
-
                 articles.Add(new Article(i, el.title, el.link));
                 i++;
             }
