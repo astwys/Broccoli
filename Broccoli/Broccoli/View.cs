@@ -19,7 +19,7 @@ namespace Broccoli {
 			Console.Write("Hello and welcome to Broccoli. To find out about the latest news of TheVerge\njust type \"whats up\" and select your desired article.\nFor further information type \"help\".\n");
 		}
 
-		public void Error (string message) {
+		public static void Error (string message) {
 			Console.WriteLine(message);
 		}
 

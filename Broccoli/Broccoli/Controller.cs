@@ -158,12 +158,13 @@ namespace Broccoli {
 
 		#region errors
 		private void unkown () {
-			Console.WriteLine("This command is unknown!");
+			View.Error("This command is unknown!");
 		}
 
 		private void error (string message) {
-			Model.View.Error(message);
+			View.Error(message);
 		}
+
 		#endregion
 	}
 }

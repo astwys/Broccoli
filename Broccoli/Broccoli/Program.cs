@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace Broccoli {
 	class Program {
 		static void Main (string[] args) {
-			new Model();
-			//new Storage();
+			//new Model();
+			new Storage();
 		}
 	}
 }
