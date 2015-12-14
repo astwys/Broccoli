@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace Broccoli {
 		public Downloader Downloader { get; set; }
 		public Storage Storage { get; set; }
 
+		private List<Article> newArticles;
+
 		public Model () {
 			View = new View(this);
 			Controller = new Controller(this);
@@ -23,11 +26,24 @@ namespace Broccoli {
 
 		#region show methods
 		public void ShowArticles () {
-			Console.WriteLine("Show articles");
+
+			//assign the downloaded articles to the array
+			newArticles = Downloader.Download();
+
+			Console.WriteLine("Here are the latest articles:");
+			foreach (var article in newArticles) {
+				Console.WriteLine(article.ID+": "+article.Title);
+			}
+
 		}
 
 		public void ShowSavedArticles () {
-			Console.WriteLine("Show saved articles");
+
+			Console.WriteLine("Here are your saved articles:");
+			foreach (var articles in Storage.SavedArticles) {
+				Console.WriteLine(articles.ID+": "+articles.Title);
+			}
+
 		}
 
 		public void ShowHelp () {
@@ -37,11 +53,13 @@ namespace Broccoli {
 
 		#region read methods
 		public void ReadStorage (int articleNumber) {
-			Console.WriteLine("Read out of storage #"+ articleNumber +"");
+			Process.Start(Storage.SavedArticles[articleNumber - 1].Link);
 		}
 
 		public void ReadNew (int articleNumber) {
-			Console.WriteLine("Read out of the new ones #"+ articleNumber +"");
+			if (newArticles == null)
+				newArticles = Downloader.Download();
+			Process.Start(newArticles[articleNumber - 1].Link);
 		}
 		#endregion
 
