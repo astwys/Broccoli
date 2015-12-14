@@ -31,25 +31,32 @@ namespace Broccoli {
 
 			XmlDocument xdoc = new XmlDocument();
 			xdoc.Load(PATH);
+
+			// set root element --> <articles>
 			var root = xdoc.DocumentElement;
 
+			// create new elements
 			XmlElement xarticle = xdoc.CreateElement("article");
 			XmlElement xid = xdoc.CreateElement("id");
 			XmlElement xtitle = xdoc.CreateElement("title");
 			XmlElement xlink = xdoc.CreateElement("link");
 
+			// get information about the article
 			int id = article.ID;
 			string title = article.Title;
 			string link = article.Link;
 
+			// set text inside of the elements
 			xid.InnerText = id.ToString();
 			xtitle.InnerText = title;
 			xlink.InnerText = link;
 
+			// add id, title & link elements to the article element
 			xarticle.AppendChild(xid);
 			xarticle.AppendChild(xtitle);
 			xarticle.AppendChild(xlink);
 
+			// add article to the root element
 			root.AppendChild(xarticle);
 
 		}
