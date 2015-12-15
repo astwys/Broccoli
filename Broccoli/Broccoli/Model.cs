@@ -40,14 +40,21 @@ namespace Broccoli {
 		public void ShowSavedArticles () {
 
 			Console.WriteLine("Here are your saved articles:");
-			foreach (var articles in Storage.SavedArticles) {
+			foreach (var articles in Storage.Show()) {
 				Console.WriteLine(articles.ID+": "+articles.Title);
 			}
 
 		}
 
 		public void ShowHelp () {
-			Console.WriteLine("Show help articles");
+			Console.WriteLine("The available commands are shown below:");
+            Console.WriteLine("\thelp\n\t\tshow this information\n\n"+
+                "\twhats up\n\t\tget the latest articles\n\n"+
+                "\tshow saved\n\t\tshow the articles in the storage\n\n"+
+                "\tread -n|-s $articlenumber\n\t\topen new|saved article with the number $article number\n\n" +
+                "\tsave $articlenumber\n\t\tsave article with number $articlenumber to storage\n\n"+
+                "\tdelete $articlenumber\n\t\tdelete article with the number $articlenumber from storage"+
+                "\texit\n\t\texit Broccoli");
 		}
 		#endregion
 
@@ -65,11 +72,11 @@ namespace Broccoli {
 
 		#region storage management
 		public void Save (int articleNumber) {
-			Console.WriteLine("Save article #"+ articleNumber);
+            Storage.Store(newArticles[articleNumber-1]);
 		}
 
 		public void Delete (int articleNumber) {
-			Console.WriteLine("Delete article");
+            Storage.Delete(articleNumber);
 		}
 		#endregion
 

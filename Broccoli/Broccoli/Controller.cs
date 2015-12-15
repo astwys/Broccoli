@@ -133,7 +133,8 @@ namespace Broccoli {
 				error("The command is invalid. Please make sure you entered it in the correct format and a valid article number!");
 			} catch (FormatException) {
 				error("The command is invalid. Please make sure you entered a valid article number!");
-			} catch (Exception) {
+			} catch (Exception e) {
+                error(e.Message);
 				error("An unknown error occured!");
 			}
 		}

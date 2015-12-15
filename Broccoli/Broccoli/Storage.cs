@@ -12,14 +12,13 @@ namespace Broccoli {
 
 		public static string PATH = "..\\..\\xmlfile.xml";
 		public List<Article> SavedArticles { get; set; }
-		private FileStream fs;
 
 		public Storage () {
 			load();
 		}
 
 		public void Store (Article article) {
-			save(article); //TODO pass Article
+			save(article);
 			load();
 		}
 
@@ -41,8 +40,15 @@ namespace Broccoli {
 			XmlElement xtitle = xdoc.CreateElement("title");
 			XmlElement xlink = xdoc.CreateElement("link");
 
-			// get information about the article
-			int id = article.ID;
+            //get the highest id
+            int max = 0;
+            foreach (var a in SavedArticles) {
+                if (a.ID > max)
+                    max = a.ID;
+            }
+
+            // get information about the article
+            int id = max+1;
 			string title = article.Title;
 			string link = article.Link;
 
@@ -58,6 +64,8 @@ namespace Broccoli {
 
 			// add article to the root element
 			root.AppendChild(xarticle);
+            xdoc.AppendChild(root);
+            xdoc.Save(PATH);
 
 		}
 
@@ -67,12 +75,14 @@ namespace Broccoli {
 			//in addition it needs to be checked if there is any former version of the save file
 			if (!File.Exists(PATH)) {
 				File.Create(PATH);
-				SavedArticles = new List<Article>();
 				return;
 			}
 
-			//load the xml file into the program
-			var xmlin = XElement.Load(PATH);
+            //reinitialise the list so we have no duplicates
+            SavedArticles = new List<Article>();
+
+            //load the xml file into the program
+            var xmlin = XElement.Load(PATH);
 
 			//query all articles and their content
 			var articles =
@@ -96,6 +106,21 @@ namespace Broccoli {
 			}
 
 		}
+
+        public void Delete (int articleNumber) {
+
+            if (!File.Exists(PATH)) {
+                View.Error("There are no saved articles yet!");
+                return;
+            }
+
+            var xmlin = XDocument.Load(PATH);
+
+            xmlin.Descendants("article").Where(a => a.Element("id").Value.Equals(""+articleNumber)).Remove();
+
+            xmlin.Save(PATH);
+
+        }
 
 	}
 }
