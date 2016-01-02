@@ -101,7 +101,7 @@ namespace Broccoli {
 				try {
 					SavedArticles.Add(new Article(Convert.ToInt16(article.Id), article.Title, article.Link));
 				} catch (Exception) {
-					View.Error("An error occured as an Article was added to the system! Please check the format of the XML-file!");
+					throw new Exception("An error occured as an Article was added to the system! Please check the format of the XML-file!");
 				}
 			}
 
@@ -109,16 +109,38 @@ namespace Broccoli {
 
         public void Delete (int articleNumber) {
 
-            if (!File.Exists(PATH)) {
-                View.Error("There are no saved articles yet!");
-                return;
-            }
+            if (!File.Exists(PATH))
+                throw new Exception("There are no saved articles yet!");
 
             var xmlin = XDocument.Load(PATH);
 
-            xmlin.Descendants("article").Where(a => a.Element("id").Value.Equals(""+articleNumber)).Remove();
+            try {
+                xmlin.Descendants("article").Where(a => a.Element("id").Value.Equals("" + articleNumber)).Single().Remove();
+            } catch (InvalidOperationException) {
+                if (SavedArticles.Count<=0) {
+                    throw new Exception("There are no saved articles yet!");
+                }
+            }
 
+            //updated save and load the changed data
+            update(ref xmlin, articleNumber);
             xmlin.Save(PATH);
+            load();
+
+        }
+
+        //is called when the user deletes one of the saved articles
+        //the IDs are uopdated
+        private void update (ref XDocument doc, int deletedArticle) {
+
+            var toupdate =
+                from articles in doc.Descendants("article")
+                where Convert.ToInt16(articles.Element("id").Value) > deletedArticle
+                select articles;
+
+            foreach (var article in toupdate) {
+                article.Element("id").Value = (Convert.ToInt16(article.Element("id").Value)-1).ToString();
+            }
 
         }
 

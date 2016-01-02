@@ -32,7 +32,12 @@ namespace Broccoli
         */
         private XDocument update() {
             // get rss feed from theverge.com
-            string xml = new WebClient().DownloadString("http://www.theverge.com/rss/index.xml");
+            string xml;
+            try {
+                xml = new WebClient().DownloadString("http://www.theverge.com/rss/index.xml");
+            } catch (WebException) {
+                throw new Exception("There is a problem with your internet connection!");
+            }
 
             // parse to xml
             XDocument doc = XDocument.Parse(xml);

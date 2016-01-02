@@ -1,18 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<articles>
-  <article>
-    <id>1</id>
-    <title>Google made a Star Wars game that turns your phone into a lightsaber</title>
-    <link>http://www.theverge.com/2015/12/15/10227458/lightsaber-phone-game-star-wars-force-awakens</link>
-  </article>
-  <article>
-    <id>2</id>
-    <title>Five hours of Darth Vader's burning corpse will replace your Yule Log</title>
-    <link>http://www.theverge.com/2015/12/15/10223468/5-hours-of-darth-vaders-burning-corpse-will-replace-your-yule-log</link>
-  </article>
-  <article>
-    <id>3</id>
-    <title>Five hours of Darth Vader's burning corpse will replace your Yule Log</title>
-    <link>http://www.theverge.com/2015/12/15/10223468/5-hours-of-darth-vaders-burning-corpse-will-replace-your-yule-log</link>
-  </article>
-</articles>
+<articles />

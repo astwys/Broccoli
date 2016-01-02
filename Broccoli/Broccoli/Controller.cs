@@ -20,6 +20,9 @@ namespace Broccoli {
 		}
 
 		private void processInput (string input) {
+            if (input == null || input.Equals(" ") || input.Equals("")) {
+                Read();
+            }
 			if (input.Contains("save") && !input.Contains("show"))
 				save(input);
 			else if (input.Contains("read"))
@@ -62,7 +65,11 @@ namespace Broccoli {
 
 		//get update from TheVerge
 		private void whatsUp () {
-			Model.ShowArticles();
+            try {
+                Model.ShowArticles();
+            } catch (Exception e) {
+                error(e.Message);
+            }
 		}
 
 		//shows the saved articles
@@ -123,19 +130,20 @@ namespace Broccoli {
 		#region storage management
 		//save the entered articel from the list of new articles
 		private void save (string input) {
-			try {
-				string[] words = input.Split(' ');
-				int number = Convert.ToInt16(words[1]);
-				if (number > 10 || number <= 0)
-					throw new FormatException();
-				Model.Save(number);
-			} catch (IndexOutOfRangeException) {
-				error("The command is invalid. Please make sure you entered it in the correct format and a valid article number!");
-			} catch (FormatException) {
-				error("The command is invalid. Please make sure you entered a valid article number!");
+            try {
+                string[] words = input.Split(' ');
+                int number = Convert.ToInt16(words[1]);
+                if (number > 10 || number <= 0)
+                    throw new FormatException();
+                Model.Save(number);
+            } catch (IndexOutOfRangeException) {
+                error("The command is invalid. Please make sure you entered it in the correct format and a valid article number!");
+            } catch (FormatException) {
+                error("The command is invalid. Please make sure you entered a valid article number!");
+            } catch (NullReferenceException) {
+                error("Make sure you typed \"whats up\" before saving!");
 			} catch (Exception e) {
                 error(e.Message);
-				error("An unknown error occured!");
 			}
 		}
 
@@ -148,11 +156,11 @@ namespace Broccoli {
 					throw new FormatException();
 				Model.Delete(number);
 			} catch (IndexOutOfRangeException) {
-				error("The command is invalid. Please make sure you entered it in the correct format and a valid article number!");
+				error("The command is invalid. Please make sure you entered it in the correct format and have a valid article number!");
 			} catch (FormatException) {
 				error("The command is invalid. Please make sure you entered a valid article number!");
-			} catch (Exception) {
-				error("An unknown error occured!");
+			} catch (Exception e) {
+                error(e.Message);
 			}
 		}
 		#endregion

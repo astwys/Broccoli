@@ -53,7 +53,7 @@ namespace Broccoli {
                 "\tshow saved\n\t\tshow the articles in the storage\n\n"+
                 "\tread -n|-s $articlenumber\n\t\topen new|saved article with the number $article number\n\n" +
                 "\tsave $articlenumber\n\t\tsave article with number $articlenumber to storage\n\n"+
-                "\tdelete $articlenumber\n\t\tdelete article with the number $articlenumber from storage"+
+                "\tdelete $articlenumber\n\t\tdelete article with the number $articlenumber from storage\n"+
                 "\texit\n\t\texit Broccoli");
 		}
 		#endregion
