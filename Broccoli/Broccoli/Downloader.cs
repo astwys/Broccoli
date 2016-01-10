@@ -23,22 +23,57 @@ namespace Broccoli
         /**
             method to be called to get a list with articles
         */
-        public List<Article> Download() {
-            return process();
+        public List<Article> Download(int source) {
+            return process(source);
         }
 
         /**
             download theverge.com rss feed and put it into an XDocument
         */
-        private XDocument update() {
+        private XDocument update(int source) {
             // get rss feed from theverge.com
-            string xml;
+            string xml="";
             try {
-                xml = new WebClient().DownloadString("http://www.theverge.com/rss/index.xml");
+                switch (source)
+                {
+                    case 1:
+                        xml = new WebClient().DownloadString("http://www.theverge.com/rss/index.xml");
+                        break;
+                    case 2:
+                        xml = new WebClient().DownloadString("http://www.theverge.com/google/rss/index.xml");
+                        break;
+                    case 3:
+                        xml = new WebClient().DownloadString("http://www.theverge.com/apple/rss/index.xml");
+                        break;
+                    case 4:
+                        xml = new WebClient().DownloadString("http://www.theverge.com/apps/rss/index.xml");
+                        break;
+                    case 5:
+                        xml = new WebClient().DownloadString("http://www.theverge.com/rss/group/blackberry/index.xml");
+                        break;
+                    case 6:
+                        xml = new WebClient().DownloadString("http://www.theverge.com/microsoft/rss/index.xml");
+                        break;
+                    case 7:
+                        xml = new WebClient().DownloadString("http://www.theverge.com/mobile/rss/index.xml");
+                        break;
+                    case 8:
+                        xml = new WebClient().DownloadString("http://www.theverge.com/photography/rss/index.xml");
+                        break;
+                    case 9:
+                        xml = new WebClient().DownloadString("http://www.theverge.com/policy/rss/index.xml");
+                        break;
+                    case 10:
+                        xml = new WebClient().DownloadString("http://www.theverge.com/web/rss/index.xml");
+                        break;
+                    default:
+                        xml = new WebClient().DownloadString("http://www.theverge.com/rss/index.xml");
+                        break;
+                }
             } catch (WebException) {
-                throw new Exception("There is a problem with your internet connection!");
+               View.Error("There is a problem with your internet connection!");
             }
-
+            Console.WriteLine(xml);
             // parse to xml
             XDocument doc = XDocument.Parse(xml);
             return doc;
@@ -47,11 +82,11 @@ namespace Broccoli
         /**
             process the theverge.com rss feed and put all articles into a List 
         */
-        private List<Article> process() {
+        private List<Article> process(int source) {
             List<Article> articles = new List<Article>();
 
             // get XDocument
-            XDocument xd = update();
+            XDocument xd = update(source);
 
             // get title and link from the XDocument
             var res1 = from el in xd.Root.Elements()

@@ -47,6 +47,12 @@ namespace Broccoli {
 					help();
 					break;
 
+                    case "source":
+                    changeSource();
+                    Console.WriteLine(Source);
+                    break;
+
+
 					default:
 					unkown();
 					break;
@@ -66,7 +72,7 @@ namespace Broccoli {
 		//get update from TheVerge
 		private void whatsUp () {
             try {
-                Model.ShowArticles();
+                Model.ShowArticles(Source);
             } catch (Exception e) {
                 error(e.Message);
             }
@@ -115,7 +121,7 @@ namespace Broccoli {
 				int number = Convert.ToInt16(words[2]);
 				if (number > 10 || number <= 0)
 					throw new FormatException();
-				Model.ReadNew(number);
+				Model.ReadNew(number, Source);
 			} catch (IndexOutOfRangeException) {
 				error("The command is invalid. Please make sure you entered it in the correct format and a valid article number!");
 			} catch (FormatException) {
@@ -174,6 +180,24 @@ namespace Broccoli {
 			View.Error(message);
 		}
 
-		#endregion
-	}
+        #endregion
+
+        public int Source { get; set; }
+
+        private void changeSource()
+        {
+            Console.WriteLine("Which source would you like to use?");
+            Console.WriteLine("1. General\n2. android\n3. apple\n4. apps & software\n5. blackberry\n6.microsoft\n7. mobile\n8. photography\n9. policy & law\n10. web & social");
+            int number;
+            bool chosen = int.TryParse(Console.ReadLine(), out number);
+            if (!chosen)
+            {
+                View.Error("This source does not exist");
+            }
+            else
+            {
+                Source = number;
+            }
+        }
+    }
 }

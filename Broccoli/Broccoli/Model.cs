@@ -25,10 +25,10 @@ namespace Broccoli {
 		}
 
 		#region show methods
-		public void ShowArticles () {
+		public void ShowArticles (int source) {
 
 			//assign the downloaded articles to the array
-			newArticles = Downloader.Download();
+			newArticles = Downloader.Download(source);
 
 			Console.WriteLine("Here are the latest articles:");
 			foreach (var article in newArticles) {
@@ -63,9 +63,9 @@ namespace Broccoli {
 			Process.Start(Storage.SavedArticles[articleNumber - 1].Link);
 		}
 
-		public void ReadNew (int articleNumber) {
+		public void ReadNew (int articleNumber, int source) {
 			if (newArticles == null)
-				newArticles = Downloader.Download();
+				newArticles = Downloader.Download(source);
 			Process.Start(newArticles[articleNumber - 1].Link);
 		}
 		#endregion
