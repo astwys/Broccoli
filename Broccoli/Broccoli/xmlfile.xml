@@ -1,2 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<articles />
+<articles>
+  <article>
+    <id>1</id>
+    <title>First Click: 359 days until CES 2017</title>
+    <link>http://www.theverge.com/2016/1/11/10748076/first-click-359-days-until-ces-2017</link>
+  </article>
+  <article>
+    <id>2</id>
+    <title>Tech executives 'open' to helping Obama thwart ISIS, Apple holds strong on encryption</title>
+    <link>http://www.theverge.com/2016/1/9/10741972/tech-executives-obama-isis-private-meeting</link>
+  </article>
+</articles>

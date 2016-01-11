@@ -20,8 +20,10 @@ namespace Broccoli {
 		}
 
 		public static void Error (string message) {
-			Console.WriteLine(message);
-		}
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ResetColor();
+        }
 
-	}
+    }
 }

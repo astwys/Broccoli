@@ -144,7 +144,11 @@ namespace Broccoli {
                 if (number > 10 || number <= 0)
                     throw new FormatException();
                 Model.Save(number);
-            } catch (IndexOutOfRangeException) {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Article " + number + " has been saved.");
+                Console.ResetColor();
+            }
+            catch (IndexOutOfRangeException) {
                 error("The command is invalid. Please make sure you entered it in the correct format and a valid article number!");
             } catch (FormatException) {
                 error("The command is invalid. Please make sure you entered a valid article number!");
@@ -163,7 +167,11 @@ namespace Broccoli {
 				if (number > 10 || number <= 0)
 					throw new FormatException();
 				Model.Delete(number);
-			} catch (IndexOutOfRangeException) {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Article " + number + " has been deleted.");
+                Console.ResetColor();
+            }
+            catch (IndexOutOfRangeException) {
 				error("The command is invalid. Please make sure you entered it in the correct format and have a valid article number!");
 			} catch (FormatException) {
 				error("The command is invalid. Please make sure you entered a valid article number!");
@@ -191,7 +199,9 @@ namespace Broccoli {
         */
         private void changeSource()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Which source would you like to use?");
+            Console.ResetColor();
             Model.ShowSources();
 
             int number;
@@ -199,12 +209,15 @@ namespace Broccoli {
             bool chosen = int.TryParse(Console.ReadLine(), out number);
             if (!chosen)
             {
-                View.Error("This source does not exist. Please choose another one.\n");
+                error("This source does not exist. Please choose another one.\n");
                 changeSource();
             }
             else
             {
                 Source = number;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("You selected source " + Source);
+                Console.ResetColor();
             }
         }
     }
