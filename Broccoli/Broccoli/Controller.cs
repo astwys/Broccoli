@@ -49,9 +49,7 @@ namespace Broccoli {
 
                     case "source":
                     changeSource();
-                    Console.WriteLine(Source);
                     break;
-
 
 					default:
 					unkown();
@@ -72,6 +70,10 @@ namespace Broccoli {
 		//get update from TheVerge
 		private void whatsUp () {
             try {
+                if (Source == 0)
+                {
+                    changeSource();
+                }
                 Model.ShowArticles(Source);
             } catch (Exception e) {
                 error(e.Message);
@@ -184,15 +186,21 @@ namespace Broccoli {
 
         public int Source { get; set; }
 
+        /**
+            change the section in theverge to use
+        */
         private void changeSource()
         {
             Console.WriteLine("Which source would you like to use?");
-            Console.WriteLine("1. General\n2. android\n3. apple\n4. apps & software\n5. blackberry\n6.microsoft\n7. mobile\n8. photography\n9. policy & law\n10. web & social");
+            Model.ShowSources();
+
             int number;
+            Console.Write(">");
             bool chosen = int.TryParse(Console.ReadLine(), out number);
             if (!chosen)
             {
-                View.Error("This source does not exist");
+                View.Error("This source does not exist. Please choose another one.\n");
+                changeSource();
             }
             else
             {

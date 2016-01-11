@@ -34,6 +34,7 @@ namespace Broccoli
             // get rss feed from theverge.com
             string xml="";
             try {
+                // choose source according to the users intput
                 switch (source)
                 {
                     case 1:
@@ -73,7 +74,7 @@ namespace Broccoli
             } catch (WebException) {
                View.Error("There is a problem with your internet connection!");
             }
-            Console.WriteLine(xml);
+
             // parse to xml
             XDocument doc = XDocument.Parse(xml);
             return doc;
