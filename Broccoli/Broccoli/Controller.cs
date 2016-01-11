@@ -70,10 +70,6 @@ namespace Broccoli {
 		//get update from TheVerge
 		private void whatsUp () {
             try {
-                if (Source == 0)
-                {
-                    changeSource();
-                }
                 Model.ShowArticles(Source);
             } catch (Exception e) {
                 error(e.Message);
