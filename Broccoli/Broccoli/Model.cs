@@ -86,16 +86,12 @@ namespace Broccoli {
 
         public void ShowSources()
         {
-            Console.WriteLine("1: general\n" +
-                "2: android\n" +
-                "3: apple\n" +
-                "4: apps & software\n" +
-                "5: blackberry\n" +
-                "6: microsoft\n" +
-                "7: mobile\n" +
-                "8: photography\n" +
-                "9: policy & law\n" +
-                "10: web & social");
+            int i = 1;
+            foreach (var source in Controller.sources)
+            {
+                Console.WriteLine(i + ": " + source);
+                i++;
+            }
         }
         #endregion
 

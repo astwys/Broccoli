@@ -188,7 +188,9 @@ namespace Broccoli {
 
         #endregion
 
-        public int Source { get; set; }
+        public int Source { get; set; } = 1;
+
+        public static string[] sources = { "General", "Android", "Apple", "Apps & Software", "Blackberry", "Microsoft", "Mobile", "Photography", "Policy & Law", "Web & Social" };
 
         /**
             change the section in theverge to use
@@ -196,7 +198,7 @@ namespace Broccoli {
         private void changeSource()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Which source would you like to use?");
+            Console.WriteLine("Which source would you like to use? [current: " + sources[Source - 1] + "]");
             Console.ResetColor();
             Model.ShowSources();
 
@@ -212,7 +214,7 @@ namespace Broccoli {
             {
                 Source = number;
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("You selected source " + Source);
+                Console.WriteLine("You selected " + sources[Source-1]);
                 Console.ResetColor();
             }
         }
