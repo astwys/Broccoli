@@ -72,7 +72,7 @@ namespace Broccoli {
             try {
                 Model.ShowArticles(Source);
             } catch (Exception e) {
-                error(e.Message);
+                //error(e.Message);
             }
 		}
 
@@ -198,12 +198,22 @@ namespace Broccoli {
         private void changeSource()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Which source would you like to use? [current: " + sources[Source - 1] + "]");
+            Console.Write("Which source would you like to use? [current: ");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write(sources[Source - 1]);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("]");
             Console.ResetColor();
             Model.ShowSources();
 
             int number;
-            Console.Write("source>");
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("source");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write(">");
+            Console.ResetColor();
+
             bool chosen = int.TryParse(Console.ReadLine(), out number);
             if (!chosen)
             {
