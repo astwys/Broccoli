@@ -72,7 +72,7 @@ namespace Broccoli {
             try {
                 Model.ShowArticles(Source);
             } catch (Exception e) {
-                //error(e.Message);
+
             }
 		}
 
