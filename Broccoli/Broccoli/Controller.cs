@@ -203,7 +203,7 @@ namespace Broccoli {
             Model.ShowSources();
 
             int number;
-            Console.Write(">");
+            Console.Write("source>");
             bool chosen = int.TryParse(Console.ReadLine(), out number);
             if (!chosen)
             {

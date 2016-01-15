@@ -29,8 +29,9 @@ namespace Broccoli {
 
 			//assign the downloaded articles to the array
 			newArticles = Downloader.Download(source);
-
+            Console.ForegroundColor = ConsoleColor.Yellow;
 			Console.WriteLine("Here are the latest articles:");
+            Console.ResetColor();
 			foreach (var article in newArticles) {
 				Console.WriteLine(article.ID+": "+article.Title);
 			}
