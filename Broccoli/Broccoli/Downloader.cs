@@ -73,7 +73,6 @@ namespace Broccoli
                 }
             } catch (WebException) {
                View.Error("There is a problem with your internet connection!");
-                return null;
             }
 
             // parse to xml

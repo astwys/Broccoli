@@ -29,9 +29,8 @@ namespace Broccoli {
 
 			//assign the downloaded articles to the array
 			newArticles = Downloader.Download(source);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-			Console.WriteLine("Here are the latest articles:");
-            Console.ResetColor();
+            View.ColorStringNL("Here are the latest articles:", ConsoleColor.Yellow);
+
 			foreach (var article in newArticles) {
 				Console.WriteLine(article.ID+": "+article.Title);
 			}
@@ -39,10 +38,8 @@ namespace Broccoli {
 		}
 
 		public void ShowSavedArticles () {
+            View.ColorStringNL("Here are your saved articles:", ConsoleColor.Yellow);
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Here are your saved articles:");
-            Console.ResetColor();
             foreach (var articles in Storage.Show()) {
 				Console.WriteLine(articles.ID+": "+articles.Title);
 			}
@@ -51,37 +48,29 @@ namespace Broccoli {
 
 		public void ShowHelp () {
 			Console.WriteLine("The available commands are shown below:");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\thelp");
-            Console.ResetColor();
+
+            View.ColorStringNL("\thelp", ConsoleColor.Yellow);
             Console.WriteLine("\t\tshow this information\n");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\twhats up");
-            Console.ResetColor();
+
+            View.ColorStringNL("\twhats up", ConsoleColor.Yellow);
             Console.WriteLine("\t\tget the latest articles\n");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\tsource");
-            Console.ResetColor();
+
+            View.ColorStringNL("\tsource", ConsoleColor.Yellow);
             Console.WriteLine("\t\tchange the source for articles to show\n");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\tshow saved");
-            Console.ResetColor();
+
+            View.ColorStringNL("\tshow saved", ConsoleColor.Yellow);
             Console.WriteLine("\t\tshow the articles in the storage\n");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\tread -n|-s $articlenumber");
-            Console.ResetColor();
+
+            View.ColorStringNL("\tread -n|-s $articlenumber", ConsoleColor.Yellow);
             Console.WriteLine("\t\topen new|saved article with the number $article number\n");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\tsave $articlenumber");
-            Console.ResetColor();
+
+            View.ColorStringNL("\tsave $articlenumber", ConsoleColor.Yellow);
             Console.WriteLine("\t\tsave article with number $articlenumber to storage\n");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\tdelete $articlenumber");
-            Console.ResetColor();
+
+            View.ColorStringNL("\tdelete $articlenumber", ConsoleColor.Yellow);
             Console.WriteLine("\t\tdelete article with the number $articlenumber from storage\n");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\texit");
-            Console.ResetColor();
+
+            View.ColorStringNL("\texit", ConsoleColor.Yellow);
             Console.WriteLine("\t\texit Broccoli");
 		}
 

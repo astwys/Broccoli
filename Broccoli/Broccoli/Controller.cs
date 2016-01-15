@@ -140,9 +140,8 @@ namespace Broccoli {
                 if (number > 10 || number <= 0)
                     throw new FormatException();
                 Model.Save(number);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Article " + number + " has been saved.");
-                Console.ResetColor();
+
+                View.ColorStringNL("Article " + number + " has been saved.", ConsoleColor.Green);
             }
             catch (IndexOutOfRangeException) {
                 error("The command is invalid. Please make sure you entered it in the correct format and a valid article number!");
@@ -163,9 +162,7 @@ namespace Broccoli {
 				if (number > 10 || number <= 0)
 					throw new FormatException();
 				Model.Delete(number);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Article " + number + " has been deleted.");
-                Console.ResetColor();
+                View.ColorStringNL("Article " + number + " has been deleted.", ConsoleColor.Green);
             }
             catch (IndexOutOfRangeException) {
 				error("The command is invalid. Please make sure you entered it in the correct format and have a valid article number!");
@@ -197,23 +194,17 @@ namespace Broccoli {
         */
         private void changeSource()
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("Which source would you like to use? [current: ");
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write(sources[Source - 1]);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("]");
-            Console.ResetColor();
+            View.ColorStringIL("Which source would you like to use? [current: ", ConsoleColor.Yellow);
+            View.ColorStringIL(sources[Source - 1], ConsoleColor.DarkYellow);
+            View.ColorStringNL("]", ConsoleColor.Yellow);
+
             Model.ShowSources();
 
-            int number;
-
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write("source");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write(">");
+            View.ColorStringIL("source", ConsoleColor.DarkYellow);
             Console.ResetColor();
+            Console.Write(">");
 
+            int number;
             bool chosen = int.TryParse(Console.ReadLine(), out number);
             if (!chosen)
             {
@@ -223,9 +214,7 @@ namespace Broccoli {
             else
             {
                 Source = number;
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("You selected " + sources[Source-1]);
-                Console.ResetColor();
+                View.ColorStringNL("You selected " + sources[Source - 1], ConsoleColor.Green);
             }
         }
     }
