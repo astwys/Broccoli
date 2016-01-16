@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace Broccoli {
 	class Controller {
@@ -70,10 +71,15 @@ namespace Broccoli {
 		//get update from TheVerge
 		private void whatsUp () {
             try {
-                Model.ShowArticles(Source);
-            } catch (Exception e) {
-
+                Model.ShowArticles(Source);                
+            } catch (NullReferenceException) {
+                error("There was a problem when downloading the XML file!");
+            } catch (WebException) {
+                error("There is a problem with your internet connection!");
+            } catch (Exception) {
+                error("An error occured while downloading and processing the XML file!");
             }
+
 		}
 
 		//shows the saved articles
