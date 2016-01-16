@@ -73,7 +73,7 @@ namespace Broccoli {
             try {
                 Model.ShowArticles(Source);                
             } catch (NullReferenceException) {
-                error("There was a problem when downloading the XML file!");
+                error("There was a problem when processing the XML file!");
             } catch (WebException) {
                 error("There is a problem with your internet connection!");
             } catch (Exception) {
